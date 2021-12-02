@@ -1,0 +1,28 @@
+pipeline{
+
+ environment{
+
+    image = 'madvan92/myimg:v1'
+    cred = 'docred'
+    
+
+}
+ agent any
+
+ stages {
+      stage('git clone') {
+        steps{
+            git([url: 'https://github.com/arjunachari12/docker-demo.git',branch: 'master'])
+
+} 
+}
+     
+}
+ stages {
+   stage('build'){
+     script {
+        dockerImage= docker.build image
+}
+}
+}
+}
